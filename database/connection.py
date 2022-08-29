@@ -7,11 +7,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+ip_address = os.environ['IP_AWS']
 user = os.environ['USER_ADMIN']
 pwd_db = os.environ['SENHA_DB']
 name_db = os.environ['DATABASE']
 
 #  --> create session async.
-engine = create_async_engine(f"postgresql+asyncpg://{user}:{pwd_db}@localhost:5432/{name_db}", echo=False)
+engine = create_async_engine(f"postgresql+asyncpg://{user}:{pwd_db}@{ip_address}:5432/{name_db}", echo=False)
 async_session = sessionmaker(engine, class_=AsyncSession)
 
